@@ -1,0 +1,15 @@
+{
+  "name": "p4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Test_New_File_New_Project.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esLint": "^8.8.0"
+  }
+}
