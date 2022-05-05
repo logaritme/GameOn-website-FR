@@ -1,3 +1,13 @@
+// INDEX
+// Fx/fx -> Fonction/Function
+
+// Variable subscribeForm based on the DOM that I will listen event for each submitting form
+const subscribeForm = document.getElementById('form-subscribe-tournament');
+subscribeForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+});
+
+// Fx editNav() to manage the responsive in CSS.
 function editNav() {
   var x = document.getElementById('myTopnav');
   if (x.className === 'topnav') {
@@ -7,13 +17,7 @@ function editNav() {
   }
 }
 
-// Variable subscribeForm based on the DOM that I will listen event for each submitting form
-const subscribeForm = document.getElementById('form-subscribe-tournament');
-subscribeForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-});
-
-// DOM Elements
+// Catchs DOM elements to variables.
 const modalContent = document.getElementById('modal-content');
 const modalBtn = document.querySelectorAll('.modal-btn');
 const formData = document.querySelectorAll('.formData');
@@ -24,24 +28,25 @@ modalBtn.forEach((clickBtnLaunch) =>
   clickBtnLaunch.addEventListener('click', launchModal)
 );
 
-// launch modal form.
+// Open modal form.
 function launchModal() {
+  errorDisplay('firstName', '', true);
+  errorDisplay('lastName', '', true);
+  errorDisplay('email', '', true);
+  errorDisplay('birthDate', '', true);
+  errorDisplay('quantity', '', true);
+  errorDisplay('locations', '', true);
+  errorDisplay('terms', '', true);
   modalContent.style.display = 'block';
 }
 
-// Below, variable for all the input fields.
-const inputsInFields = document.querySelectorAll(
-  'input[type="text"], input[type="email"], input[type="date"], input[type="number"]'
+// Below, close modal events.
+// Question Mentor: Utiliser un forEach ici est stupide car il n'y a qu'un seul élément ayant la class btn-submit?
+btnSubmit.forEach((clickBtnCross) =>
+  clickBtnCross.addEventListener('click', closeModal)
 );
 
-// Below, variables for all the fx filtered by regex.
-let firstName, lastName, email, birthDate, quantity;
-// Below, variables for the "final" validation fx.
-let isFirstNameValid = false;
-let isLastNameValid = false;
-let isEmailValid = false;
-let isBirthDateValid = false;
-let isQuantityValid = false;
+// () => btnSubmit.addEventListener('click', closeModal); l50 à l53 = l55 ?
 
 // Below, get values of checkboxes, location, by name.
 const theLocationsList = [
@@ -52,25 +57,78 @@ const theLocationVariable = document.querySelectorAll(
   'input[id="location1"], input[id="location2"], input[id="location3"], input[id="location4"], input[id="location5"], input[id="location6"]'
 );
 
-// Below, variable to store an array exploited later on length === 0 or !== 0 .
+// Below, variable to store an array exploited later on length === 0 or !== 0
 let arrayLocationVariable = [];
-// Below, set variable to approve validity of location checked.
+// Below, set variable to approve validity of location checked
 let isOneLocationValid;
-// Below, get value of the checkbox, terms of use, by id.
+// Below, get value of the checkbox, terms of use, by id
 const checkBoxTermsOfUseStatic = document.querySelectorAll(
   'input[id="checkbox1"]'
 );
 
-// Below, set variable to approve validity of terms of use.
+// Below, set variable to approve validity of terms of use
 let isTermsOfUseValid;
 
-// Below, close modal events.
-btnSubmit.forEach((clickBtnCloseIf) =>
-  clickBtnCloseIf.addEventListener('click', closeModal)
-);
-
-// Below, "closeModal" close modal form through the button.
+// Below, "closeModal" close modal form by button
 function closeModal() {
+  const firstNameForLength = document.getElementById('firstName');
+  const lastNameForLength = document.getElementById('lastName');
+  const eMailForLength = document.getElementById('email');
+  const birthDateForLength = document.getElementById('birthDate');
+  const quantityTournamentForLength = document.getElementById('quantity');
+
+  function function1() {
+    if (firstNameForLength.value.length === 0) {
+      errorDisplay(
+        'firstName',
+        'Le prénom doit faire entre 2 et 33 caractères.',
+        false
+      );
+    }
+  }
+
+  function function2() {
+    if (lastNameForLength.value.length === 0) {
+      errorDisplay(
+        'lastName',
+        'Le nom doit faire entre 2 et 33 caractères.',
+        false
+      );
+    }
+  }
+
+  function function3() {
+    if (eMailForLength.value.length === 0) {
+      errorDisplay(
+        'email',
+        "L'email doit faire entre 6 et 33 caractères.",
+        false
+      );
+    }
+  }
+
+  function function4() {
+    if (birthDateForLength.value.length === 0) {
+      errorDisplay('birthDate', "Cette date n'est pas valide.", false);
+    }
+  }
+
+  function function5() {
+    if (quantityTournamentForLength.value.length === 0) {
+      errorDisplay('quantity', "Cette valeur n'est pas valide.", false);
+    }
+  }
+
+  function allErrorsChecked() {
+    function1();
+    function2();
+    function3();
+    function4();
+    function5();
+  }
+
+  allErrorsChecked();
+
   isLocationValid();
   isCheckBoxTermsOfUseValid();
   if (areAllBooleansValid()) {
@@ -80,10 +138,48 @@ function closeModal() {
   }
 }
 
+// MDN: Element.setAttribute(name, value); or use Element.classList.add('');
+// Il y a éventuellement deux attributs à ajouter (data-error et ...)
+// dans le html pour afficher les messages d'erreur du form de la façon
+// originelle prévue par le codeur M.Jason.
+
+// Below, get values of inputs ( text + text + email ) by type
+const inputsInFields = document.querySelectorAll(
+  'input[type="text"], input[type="email"], input[type="date"], input[type="number"]'
+);
+
+// Below, variables for all the fx filtered by regex
+let firstName, lastName, email, birthDate, quantity;
+// Below, variables for the "final" validation fx
+let isFirstNameValid = false;
+let isLastNameValid = false;
+let isEmailValid = false;
+let isBirthDateValid = false;
+let isQuantityValid = false;
+
+// Below, the "errorDisplay" manage all error messages displayed
+// through a text displaying in the appropriated div.
+const errorDisplay = (tag, message, valid) => {
+  const textContainer = document.querySelector(`.${tag}`);
+  const errorDisplayDiv = document.querySelector(`.${tag} > div`);
+  if (!valid) {
+    textContainer.classList.add('errorDiv');
+    errorDisplayDiv.textContent = message;
+  } else {
+    textContainer.classList.remove('errorDiv');
+    errorDisplayDiv.textContent = message;
+  }
+};
+
 // First name : Fx that filters the length and the validity of the first name typed.
 function firstNameChecker(value) {
   // Si la longueur est non valide
   if ((value.length > 0 && value.length < 2) || value.length > 33) {
+    errorDisplay(
+      'firstName',
+      'Le prénom doit faire entre 2 et 33 caractères.',
+      false
+    );
     firstName = null;
     isFirstNameValid = false;
     areAllBooleansValid();
@@ -91,10 +187,16 @@ function firstNameChecker(value) {
   // Si les caractères sont non valides
   // REGEX alternative [\p{L}- ]
   else if (!value.match(/^[a-zA-ZÀ-ÿ-' ]*$/g)) {
+    errorDisplay(
+      'firstName',
+      'Le prénom ne doit contenir ni caractères spéciaux ni chiffres.',
+      false
+    );
     firstName = null;
     isFirstNameValid = false;
     areAllBooleansValid();
   } else {
+    errorDisplay('firstName', '', true);
     firstName = value;
     isFirstNameValid = true;
     areAllBooleansValid();
@@ -106,6 +208,11 @@ function firstNameChecker(value) {
 const lastNameChecker = (value) => {
   // Si la longueur est non valide
   if ((value.length > 0 && value.length < 2) || value.length > 33) {
+    errorDisplay(
+      'lastName',
+      'Le nom doit faire entre 2 et 33 caractères.',
+      false
+    );
     lastName = null;
     isLastNameValid = false;
     areAllBooleansValid();
@@ -113,10 +220,16 @@ const lastNameChecker = (value) => {
   // Si les caractères sont non valides
   // REGEX alternative [\p{L}- ]
   else if (!value.match(/^[a-zA-ZÀ-ÿ-' ]*$/g)) {
+    errorDisplay(
+      'lastName',
+      'Le nom ne doit contenir ni caractères spéciaux ni chiffres.',
+      false
+    );
     lastName = null;
     isLastNameValid = false;
     areAllBooleansValid();
   } else {
+    errorDisplay('lastName', '', true);
     lastName = value;
     isLastNameValid = true;
     areAllBooleansValid();
@@ -127,6 +240,11 @@ const lastNameChecker = (value) => {
 const emailChecker = (value) => {
   // Si la longueur est non valide
   if ((value.length > 0 && value.length < 6) || value.length > 33) {
+    errorDisplay(
+      'email',
+      "L'email doit faire entre 6 et 33 caractères.",
+      false
+    );
     email = null;
     isEmailValid = false;
     areAllBooleansValid();
@@ -137,10 +255,16 @@ const emailChecker = (value) => {
     value.length > 0 &&
     !value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
   ) {
+    errorDisplay(
+      'email',
+      "L'email doit contenir un @ et ne doit pas contenir de caractères spéciaux.",
+      false
+    );
     email = null;
     isEmailValid = false;
     areAllBooleansValid();
   } else {
+    errorDisplay('email', '', true);
     email = value;
     isEmailValid = true;
     areAllBooleansValid();
@@ -151,6 +275,11 @@ const emailChecker = (value) => {
 const birthDateChecker = (value) => {
   // Si la longueur est non valide
   if (value.length > 0 && value.length !== 10) {
+    errorDisplay(
+      'birthDate',
+      'La date doit être conforme à jj/mm/aaaa.',
+      false
+    );
     birthDate = null;
     isBirthDateValid = false;
     areAllBooleansValid();
@@ -162,10 +291,12 @@ const birthDateChecker = (value) => {
       /(^(19[0-9]{2}|200[0-9])[\/\-](0[1-9]|1[012])[\/\-](0[1-9]|[12][0-9]|3[01])$)/
     )
   ) {
+    errorDisplay('birthDate', "Cette date n'est pas valide.", false);
     birthDate = null;
     isBirthDateValid = false;
     areAllBooleansValid();
   } else {
+    errorDisplay('birthDate', '', true);
     birthDate = value;
     isBirthDateValid = true;
     areAllBooleansValid();
@@ -180,10 +311,12 @@ const quantityChecker = (value) => {
     value.length > 2 ||
     !value.match(/(^[0-9]?[0-9]?[0-9]?[0-9]$)/)
   ) {
+    errorDisplay('quantity', "Cette valeur n'est pas valide.", false);
     quantity = null;
     isQuantityValid = false;
     areAllBooleansValid();
   } else {
+    errorDisplay('quantity', '', true);
     quantity = value;
     isQuantityValid = true;
     areAllBooleansValid();
@@ -226,16 +359,19 @@ theLocationVariable.forEach((check) => {
   });
 });
 
-// Fx managing the tournament cities ( forward to fx: global form validation )
+// Fx managing the tournament cities ( forward to fx: error message + global form validation )
+// Exécuter cette fonction au moment de close Modal, bonne ou mauvaise idée?
 function isLocationValid() {
   if (
     theLocationsList.filter((location) => location.checked).length === 0 ||
     theLocationVariable.length === 0
   ) {
     isOneLocationValid = false;
+    errorDisplay('locations', 'Une ville doit être cochée.', false);
     areAllBooleansValid();
   } else if (theLocationVariable.length !== 0) {
     isOneLocationValid = true;
+    errorDisplay('locations', '', true);
     areAllBooleansValid();
   } else {
     return error();
@@ -268,7 +404,7 @@ inputsInFields.forEach((input) => {
   });
 });
 
-// Declare fx isCheckBoxTermsOfUseValid ( used in closeModal()) ( forward to fx: global form validation )
+// Declare fx isCheckBoxTermsOfUseValid ( used in closeModal()) ( forward to fx: error message + global form validation )
 function isCheckBoxTermsOfUseValid() {
   // Below, get value of checkbox, term of use, by name
   const checkBoxTermOfUseList = [
@@ -283,12 +419,18 @@ function isCheckBoxTermsOfUseValid() {
     checkBoxTermOfUseList.filter((term) => term.checked).length === 0
   ) {
     isTermsOfUseValid = false;
+    errorDisplay(
+      'terms',
+      "Les conditions d'utilisations doivent être acceptées.",
+      false
+    );
     areAllBooleansValid();
   } else if (
     checkBoxTermsOfUseDynamic !== null &&
     checkBoxTermOfUseList.filter((term) => term.checked).length !== 0
   ) {
     isTermsOfUseValid = true;
+    errorDisplay('terms', '', true);
     areAllBooleansValid();
   } else {
     return error();
@@ -300,34 +442,20 @@ checkBoxTermsOfUseStatic.forEach((checkTerm) => {
   checkTerm.addEventListener('input', function () {
     if (this.checked) {
       isTermsOfUseValid = true;
+      errorDisplay('terms', '', true);
     } else {
       isTermsOfUseValid = false;
+      errorDisplay(
+        'terms',
+        "Les conditions d'utilisations doivent être acceptées.",
+        false
+      );
     }
   });
 });
 
-// Final Fx fléchée areAllBooleansValid() to close the first modal.
-// const areAllBooleansValid = () => {
-//   console.log('Ca rentre dans ma fonction areAllBooleansValid !');
-//   return (
-//     firstName !== null &&
-//     isFirstNameValid !== false &&
-//     lastName !== null &&
-//     isLastNameValid !== false &&
-//     email !== null &&
-//     isEmailValid !== false &&
-//     birthDate !== null &&
-//     isBirthDateValid !== false &&
-//     quantity !== null &&
-//     isQuantityValid !== false &&
-//     isOneLocationValid !== false &&
-//     isTermsOfUseValid !== false
-//   );
-// };
-
-// Below, doublon: Fx areAllBooleansValid() déclarée
-function areAllBooleansValid() {
-  console.log('Ca rentre dans ma fonction pas fléchée areAllBooleansValid !');
+// Final Fx areAllBooleansValid() to close the first modal.
+const areAllBooleansValid = () => {
   return (
     firstName !== null &&
     isFirstNameValid !== false &&
@@ -342,7 +470,7 @@ function areAllBooleansValid() {
     isOneLocationValid !== false &&
     isTermsOfUseValid !== false
   );
-}
+};
 
 // Below, close the first modal through the cross.
 function closeCrossModal() {
