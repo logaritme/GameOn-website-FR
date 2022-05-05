@@ -22,6 +22,8 @@ const modalContent = document.getElementById('modal-content');
 const modalBtn = document.querySelectorAll('.modal-btn');
 const formData = document.querySelectorAll('.formData');
 const btnSubmit = document.querySelectorAll('.btn-submit');
+const btnReset = document.getElementById('btn-modal-thank-you');
+const secondModal = document.getElementById('modal-subscribe-thank-you');
 
 // Open/Launch modal event.
 modalBtn.forEach((clickBtnLaunch) =>
@@ -38,6 +40,7 @@ function launchModal() {
   errorDisplay('locations', '', true);
   errorDisplay('terms', '', true);
   modalContent.style.display = 'block';
+  secondModal.style.display = 'block';
 }
 
 // Below, close modal events.
@@ -132,9 +135,12 @@ function closeModal() {
   isLocationValid();
   isCheckBoxTermsOfUseValid();
   if (areAllBooleansValid()) {
+    // const secondModal = document.getElementById('modal-subscribe-thank-you');
     modalContent.style.display = 'none';
+    secondModal.classList.remove('second-modal-none');
   } else {
     modalContent.style.display = 'block';
+    secondModal.classList.add('second-modal-none');
   }
 }
 
@@ -475,4 +481,17 @@ const areAllBooleansValid = () => {
 // Below, close the first modal through the cross.
 function closeCrossModal() {
   modalContent.style.display = 'none';
+  secondModal.style.display = 'none';
+}
+
+// Below, resetfunction from HTML onclick="resetfunction()".
+function resetFunction() {
+  secondModal.style.display = 'none';
+}
+
+// Question mentor: Utiliser un forEach ici est stupide car il n'y a qu'un seul élément ayant la class btn-modal-thank-you?
+btnReset.addEventListener('click', closeModalThankYou);
+
+function closeModalThankYou() {
+  secondModal.style.display = 'none';
 }
