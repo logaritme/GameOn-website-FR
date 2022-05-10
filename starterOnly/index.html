@@ -42,9 +42,8 @@
           Je m'inscris
         </button>
       </div>
-      <div class="hero-img" style="background-color: darkcyan;">
-        <!-- Restore this picture in img at the end of the project -->
-        <!-- <img src="./bg_img.jpg" alt="img" /> -->
+      <div class="hero-img">
+        <img src="./bg_img.jpg" alt="img" />
       </div>
       <button class="btn-signup modal-btn">
         Je m'inscris
@@ -52,6 +51,7 @@
     </section>
     <div class="bground" id="modal-content">
       <div class="content">
+        <!-- onclick sur cet élément déclenche la fermeture de la modale en JS -->
         <span class="close btn-close fa-solid fa-xmark" onclick="closeCrossModal()"></span>
         <div class="modal-body">
           <form id="form-subscribe-tournament" name="reserve">
@@ -76,7 +76,7 @@
               <div></div>
             </div>
             <div class="formData quantity">
-              <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
+              <label for="quantity">À combien de tournois GameOn<br> avez-vous déjà participé ?</label><br>
               <input class="text-control" type="number" id="quantity" name="quantity" min="0" />
               <div></div>
             </div>
@@ -125,6 +125,7 @@
                 Je souhaite être prévenu(e) des prochains évènements.
               </label>
             </div>
+            <!-- Onsubmit with a listener to submit datas and close (if valid) or not close the modal -->
             <input class="btn-submit btn-close button" id="firstModalBtnSubmit" type="submit" value="C'est parti" />
             <div id="outputBox"></div>
           </form>
