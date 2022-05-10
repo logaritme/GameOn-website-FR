@@ -20,7 +20,6 @@ function editNav() {
 // Catchs DOM elements to variables.
 const modalContent = document.getElementById('modal-content');
 const modalBtn = document.querySelectorAll('.modal-btn');
-const formData = document.querySelectorAll('.formData');
 const btnSubmit = document.querySelectorAll('.btn-submit');
 const btnReset = document.getElementById('btn-modal-thank-you');
 const secondModal = document.getElementById('modal-subscribe-thank-you');

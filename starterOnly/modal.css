@@ -201,11 +201,12 @@ main {
   overflow: hidden;
   position: relative;
   color: #fff;
-  padding-top: 10px;
+  padding: 10px;
 }
 
 .btn-confirmation-modal {
-  margin: 5% 0 auto;
+  margin: 60% 0 38% auto;
+  padding: 0;
 }
 
 .modal-body {
@@ -234,20 +235,6 @@ input {
   height: auto;
 }
 
-/* .formData[data-error]::after {
-  content: attr(data-error);
-  font-size: 0.4em;
-  color: #e54858;
-  display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  text-align: right;
-  line-height: 0.3;
-  opacity: 0;
-  transition: 0.3s;
-} */
-/* ------------------------------- */
-
 .errorDiv {
   margin: 0;
   padding: 12px 0;
@@ -266,21 +253,6 @@ input {
   margin-top: -45px;
   margin-bottom: 0;
 }
-
-/* ------------------------------------------------- */
-/* .formData[data-error-visible="true"]::after {
-  opacity: 1;
-}
-.formData[data-error-visible="true"] .text-control {
-  border: 2px solid #e54858;
-} */
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
-/* ------------------------------------------------- */
 
 /* The checkbox classes and their afters */
 .checkbox-label,
@@ -571,6 +543,19 @@ footer {
 /* END : The footer */
 
 @media screen and (max-width: 800px) {
+  .modal-body {
+    margin: 0 8%;
+    padding: 0;
+  }
+  .content {
+    margin: 0 auto;
+  }
+  .formData {
+    margin-bottom: 10px;
+  }
+  .field {
+    margin-bottom: 0;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -602,6 +587,17 @@ footer {
     display: block;
     margin: 32px auto 10px;
     padding: 12px 35px;
+  }
+  .close {
+    top: 0;
+  }
+  .content-thank-you {
+    margin: 0 auto;
+    padding: 10px 0 10px 0;
+  }
+  .btn-confirmation-modal {
+    margin-top: 69%;
+    margin-bottom: 50%;
   }
   .copyrights {
     margin-top: 50px;

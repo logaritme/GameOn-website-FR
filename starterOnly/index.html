@@ -55,17 +55,17 @@
         <span class="close btn-close fa-solid fa-xmark" onclick="closeCrossModal()"></span>
         <div class="modal-body">
           <form id="form-subscribe-tournament" name="reserve">
-            <div class="formData firstName">
+            <div class="formData firstName field">
               <label for="firstName">Prénom</label><br>
               <input class="text-control" type="text" id="firstName" placeholder="Prénom" name="firstName" /><br>
               <div></div>
             </div>
-            <div class="formData lastName">
+            <div class="formData lastName field">
               <label for="lastName">Nom</label><br>
               <input class="text-control" type="text" id="lastName" placeholder="Nom" name="lastName" /><br>
               <div></div>
             </div>
-            <div class="formData email">
+            <div class="formData email field">
               <label for="email">E-mail</label><br>
               <input class="text-control" type="text" id="email" placeholder="E-mail" name="email" /><br>
               <div></div>
@@ -75,7 +75,7 @@
               <input class="text-control" type="date" id="birthDate" name="birthDate" /><br>
               <div></div>
             </div>
-            <div class="formData quantity">
+            <div class="formData quantity field">
               <label for="quantity">À combien de tournois GameOn<br> avez-vous déjà participé ?</label><br>
               <input class="text-control" type="number" id="quantity" name="quantity" min="0" />
               <div></div>
@@ -135,6 +135,7 @@
     </div>
     <div class="bground-thank-you" id="modal-subscribe-thank-you">
       <div class="content-thank-you">
+        <span class="close btn-close fa-solid fa-xmark" onclick="closeCrossModal()"></span>
         <p class="btn-confirmation-modal">Vos informations ont bien été enregistrées<br>
           Merci pour votre inscription</p><br>
         <input class="btn-reset" id="btn-modal-thank-you" type="reset" onclick="resetFunction()"
