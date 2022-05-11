@@ -526,6 +526,11 @@ input {
   display: none;
 }
 
+.btn-confirmation-modal {
+  margin-top: 210px;
+  margin-bottom: 210px;
+}
+
 /* The footer */
 .copyrights {
   color: #fe142f;
@@ -596,12 +601,31 @@ footer {
     padding: 10px 0 10px 0;
   }
   .btn-confirmation-modal {
-    margin-top: 69%;
-    margin-bottom: 50%;
+    margin-top: 185px;
+    margin-bottom: 185px;
   }
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .content {
+    top: 79px;
+  }
+  .content-thank-you {
+    top: 79px;
+  }
+  .btn-confirmation-modal {
+    margin-top: 180px;
+    margin-bottom: 180px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .formDataSpecial {
+    margin-top: -37px;
   }
 }
 
