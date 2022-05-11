@@ -176,7 +176,7 @@ main {
 }
 
 .content {
-  margin: 5% auto;
+  margin: 6.5% auto 0 auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -189,13 +189,14 @@ main {
   padding-top: 10px;
 }
 
-.formData, .formDataSpecial {
+.formData,
+.formDataSpecial {
   scrollbar-width: none;
 }
 
 .content-thank-you {
   text-align: center;
-  margin: 5% auto;
+  margin: 6.5% auto 0 auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -530,12 +531,6 @@ input {
   display: none;
 }
 
-.btn-confirmation-modal {
-  margin-top: 220px;
-  margin-bottom: 200px;
-  scrollbar-width: none;
-}
-
 /* The footer */
 .copyrights {
   color: #fe142f;
@@ -617,20 +612,30 @@ footer {
 
 @media screen and (max-width: 540px) {
   .content {
-    top: 79px;
+    top: 9px;
   }
   .content-thank-you {
-    top: 79px;
+    top: 9px;
   }
   .btn-confirmation-modal {
-    margin-top: 180px;
-    margin-bottom: 180px;
+    margin-top: 185px;
+    margin-bottom: 183px;
+  }
+  .btn-reset {
+    margin-bottom: 5%;
   }
 }
 
 @media screen and (max-width: 414px) {
   .formDataSpecial {
     margin-top: -37px;
+  }
+  .btn-confirmation-modal {
+    margin-top: 200px;
+    margin-bottom: 200px;
+  }
+  .btn-reset {
+    margin-bottom: 5%;
   }
 }
 
