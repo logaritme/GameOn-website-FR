@@ -31,13 +31,6 @@ modalBtn.forEach((clickBtnLaunch) =>
 
 // Open modal form.
 function launchModal() {
-  errorDisplay('firstName', '', true);
-  errorDisplay('lastName', '', true);
-  errorDisplay('email', '', true);
-  errorDisplay('birthDate', '', true);
-  errorDisplay('quantity', '', true);
-  errorDisplay('locations', '', true);
-  errorDisplay('terms', '', true);
   modalContent.style.display = 'block';
 }
 
@@ -132,7 +125,6 @@ function closeModal() {
   }
 
   allErrorsChecked();
-
   if (areAllBooleansValid()) {
     modalContent.style.display = 'none';
     secondModal.style.display = 'block';

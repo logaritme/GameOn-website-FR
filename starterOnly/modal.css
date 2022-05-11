@@ -66,7 +66,7 @@ img {
   display: none;
 }
 /* END : All the elements of the nav bar */
-
+/* Topnav for tablets */
 @media screen and (max-width: 768px) {
   .topnav a {
     display: none;
@@ -89,7 +89,9 @@ img {
     text-align: left;
   }
 }
+/* END: Topnav for tablets */
 
+/* Topnav for mobiles */
 @media screen and (max-width: 540px) {
   .topnav a {
     display: none;
@@ -99,6 +101,7 @@ img {
     display: block;
   }
 }
+/* End: Topnav for mobiles */
 
 main {
   font-size: 130%;

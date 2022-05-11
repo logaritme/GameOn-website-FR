@@ -11,7 +11,10 @@
   <script src="https://kit.fontawesome.com/467f0c1e9b.js" crossorigin="anonymous"></script>
 </head>
 
+<!--BODY-->
+
 <body>
+  <!--HEADER-->
   <header class="topnav" id="myTopnav">
     <div class="header-logo">
       <img alt="logo" src="./starterOnly/Logo.png" width="auto" height="auto" />
@@ -27,7 +30,9 @@
       </a>
     </div>
   </header>
+  <!--MAIN-->
   <main>
+    <!-- HERO SECTION -->
     <section class="hero-section">
       <div class="hero-content">
         <h1 class="hero-headline">
@@ -49,12 +54,16 @@
         Je m'inscris
       </button>
     </section>
+    <!-- FORM MODAL BACKGROUND -->
     <div class="bground" id="modal-content">
       <div class="content">
+        <!-- BUTTON CROSS TO CLICK -->
         <!-- onclick sur cet élément déclenche la fermeture de la modale en JS -->
         <span class="close btn-close fa-solid fa-xmark" onclick="closeCrossModal()"></span>
         <div class="modal-body">
+          <!-- FORM TO FILL -->
           <form id="form-subscribe-tournament" name="reserve">
+            <!-- FORM : FIELDS -->
             <div class="formData firstName field">
               <label for="firstName">Prénom</label><br>
               <input class="text-control" type="text" id="firstName" placeholder="Prénom" name="firstName" /><br>
@@ -80,6 +89,7 @@
               <input class="text-control" type="number" id="quantity" name="quantity" min="0" />
               <div></div>
             </div>
+            <!-- FORM : LOCATION TOURNAMENTS -->
             <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
             <div class="formData locations">
               <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" />
@@ -108,7 +118,7 @@
                 Portland</label>
               <div></div>
             </div>
-
+            <!-- FORM : TERMS OF USE -->
             <div class="formData terms">
               <input class="checkbox-input" type="checkbox" id="checkbox1" />
               <label class="checkbox2-label" for="checkbox1">
@@ -117,6 +127,7 @@
               </label>
               <div class=""></div>
             </div>
+            <!-- FORM : NEXT EVENT -->
             <div class="formDataSpecial">
               <br>
               <input class="checkbox-input" type="checkbox" id="checkbox2" />
@@ -125,24 +136,27 @@
                 Je souhaite être prévenu(e) des prochains évènements.
               </label>
             </div>
+            <!-- BUTTON SUBMIT TO CLICK -->
             <!-- Onsubmit with a listener to submit datas and close (if valid) or not close the modal -->
             <input class="btn-submit btn-close button" id="firstModalBtnSubmit" type="submit" value="C'est parti" />
             <div id="outputBox"></div>
           </form>
         </div>
-
       </div>
     </div>
+    <!-- CONFIRMATION MODAL BACKGROUND -->
     <div class="bground-thank-you" id="modal-subscribe-thank-you">
       <div class="content-thank-you">
         <span class="close btn-close fa-solid fa-xmark" onclick="closeCrossModal()"></span>
         <p class="btn-confirmation-modal">Vos informations ont bien été enregistrées<br>
           Merci pour votre inscription</p><br>
+        <!-- BUTTON CLOSE TO CLICK -->
         <input class="btn-reset" id="btn-modal-thank-you" type="reset" onclick="resetFunction()"
           form="form-subscribe-tournament" value="Fermer">
       </div>
     </div>
   </main>
+  <!-- FOOTER -->
   <footer>
     <p class="copyrights">
       Copyright 2014 - 2022, GameOn Inc.
