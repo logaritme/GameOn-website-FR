@@ -189,6 +189,10 @@ main {
   padding-top: 10px;
 }
 
+.formData, .formDataSpecial {
+  scrollbar-width: none;
+}
+
 .content-thank-you {
   text-align: center;
   margin: 5% auto;
@@ -527,8 +531,9 @@ input {
 }
 
 .btn-confirmation-modal {
-  margin-top: 210px;
-  margin-bottom: 210px;
+  margin-top: 220px;
+  margin-bottom: 200px;
+  scrollbar-width: none;
 }
 
 /* The footer */
