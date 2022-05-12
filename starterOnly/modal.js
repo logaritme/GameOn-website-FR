@@ -1,13 +1,11 @@
-// INDEX
-// Fx/fx means Function/function
+// Listener on the DOM, on form id="form-subscribe-tournament", when action is submitting the form
+document
+  .getElementById('form-subscribe-tournament')
+  .addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
 
-// Variable subscribeForm based on the DOM that I will listen event for each submitting form
-const subscribeForm = document.getElementById('form-subscribe-tournament');
-subscribeForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-});
-
-// Fx editNav() to manage the responsive in CSS.
+// Handles the responsive in CSS
 function editNav() {
   var x = document.getElementById('myTopnav');
   if (x.className === 'topnav') {
@@ -17,7 +15,7 @@ function editNav() {
   }
 }
 
-// Catchs DOM elements to variables.
+// Catchs DOM elements to variables
 const modalContent = document.getElementById('modal-content');
 const modalBtn = document.querySelectorAll('.modal-btn');
 const btnReset = document.getElementById('btn-modal-thank-you');
@@ -33,20 +31,20 @@ function launchModal() {
   modalContent.style.display = 'block';
 }
 
-// Below, close modal events
+// Close modal events
 document
   .querySelectorAll('.btn-submit')
   .forEach((clickBtnCross) =>
     clickBtnCross.addEventListener('click', closeModal)
   );
 
-// Below, get values of checkboxes location, by name
+// Get values of checkboxes location, by name
 const theLocationsList = Array.from(
   document.querySelectorAll('input[name="location"]'),
   (value) => value
 );
 
-// Below, get values for length of checkboxes location, by iteration on ids
+// Get values for length of checkboxes location, by iteration on ids
 const toBuildTheLocationVariable = [1, 2, 3, 4, 5, 6]
   .map((value) => `input[id="location${value}"]`)
   .join(', ');
@@ -54,19 +52,19 @@ const toBuildTheLocationVariable = [1, 2, 3, 4, 5, 6]
 const theLocationVariable = document.querySelectorAll(
   toBuildTheLocationVariable
 );
-// Below, variable to store an array exploited later on length === 0 or !== 0
+// Stores an array exploited later on length === 0 or !== 0
 let arrayLocationVariable = [];
-// Below, set variable to approve validity of location checked
+// Sets variable to approve validity of location checked
 let isOneLocationValid;
-// Below, get value of the checkbox, terms of use, by id.
+// Gets value of the checkbox, terms of use, by id
 const checkBoxTermsOfUseStatic = document.querySelectorAll(
   'input[id="checkbox1"]'
 );
 
-// Below, set variable to approve validity of terms of use
+// Sets variable to approve validity of terms of use
 let isTermsOfUseValid;
 
-// Below, "closeModal" close modal form by button
+// Close modal form by button
 function closeModal() {
   const firstNameForLength = document.getElementById('firstName');
   const lastNameForLength = document.getElementById('lastName');
@@ -136,21 +134,21 @@ function closeModal() {
   }
 }
 
-// Below, get values of inputs ( text + text + email ) by type
+// Gets values of inputs ( text + text + email ) by type
 const inputsInFields = document.querySelectorAll(
   'input[type="text"], input[type="email"], input[type="date"], input[type="number"]'
 );
 
-// Below, variables for all the fx filtered by regex
+// Variables declared for all the functions filtered by regex
 let firstName, lastName, email, birthDate, quantity;
-// Below, variables for the "final" validation fx.
+// Variables for the "final" validation function.
 let isFirstNameValid = false;
 let isLastNameValid = false;
 let isEmailValid = false;
 let isBirthDateValid = false;
 let isQuantityValid = false;
 
-/* Below, the "errorDisplay" manage all error messages displayed
+/* Manages all error messages displayed
    through a text displaying in the appropriated div */
 const errorDisplay = (tag, message, valid) => {
   const textContainer = document.querySelector(`.${tag}`);
@@ -310,8 +308,8 @@ const quantityChecker = (value) => {
   }
 };
 
-/* Retrieve objects
-   and returning true or false in the arrayLocationVariable
+/* Retrieve objects and returning true or false
+   in the arrayLocationVariable
    to valide or invalide the closing of the modal */
 theLocationVariable.forEach((check) => {
   check.addEventListener('input', (element) => {
@@ -390,7 +388,7 @@ inputsInFields.forEach((input) => {
   });
 });
 
-// Declare function isCheckBoxTermsOfUseValid ( forward to functions: allErrorsChecked() in closeModal() )
+// Declares function ( forward to functions: allErrorsChecked() in closeModal() )
 function isCheckBoxTermsOfUseValid() {
   // Below, get value of checkbox, term of use, by name
   const checkBoxTermOfUseList = [
@@ -435,7 +433,7 @@ checkBoxTermsOfUseStatic.forEach((checkTerm) => {
   });
 });
 
-// Final function areAllBooleansValid() to close the first modal
+// Function used later to close the form subscribe modal on valid filled form
 const areAllBooleansValid = () => {
   return (
     firstName !== null &&
@@ -453,18 +451,18 @@ const areAllBooleansValid = () => {
   );
 };
 
-// Below, close the first modal through the cross
+// Close the form subscribe modal through the cross
 function closeCrossModal() {
   modalContent.style.display = 'none';
   secondModal.style.display = 'none';
 }
 
-// Below, resetFunction from HTML onclick="resetFunction()"
-function resetFunction() {
-  secondModal.style.display = 'none';
-}
+// Closes the modal thanks when you click on the cross
+document
+  .getElementById('close-modal-thank-you')
+  .addEventListener('click', closeModalThankYou);
 
-// Below, close the modal thanks when you click on the button "Fermer"
+// Closes the modal thanks when you click on the button "Fermer"
 btnReset.addEventListener('click', closeModalThankYou);
 
 function closeModalThankYou() {
