@@ -1,9 +1,14 @@
-// Listener on the DOM, on form id="form-subscribe-tournament", when action is submitting the form
+// Listener on the DOM, on form id="form-subscribe-tournament", prevent when action is submitting the form
 document
   .getElementById('form-subscribe-tournament')
   .addEventListener('submit', (event) => {
     event.preventDefault();
   });
+
+// Listener on the DOM, on form id="form-subscribe-tournament", prevent when action is input the text
+document.getElementById('birthDate').addEventListener('submit', (event) => {
+  event.preventDefault;
+});
 
 // Handles the responsive in CSS
 function editNav() {
@@ -31,12 +36,9 @@ function launchModal() {
   modalContent.style.display = 'block';
 }
 
-// Close modal events
+// Close modal events throught the button "C'est Parti"
 document
-  .querySelectorAll('.btn-submit')
-  .forEach((clickBtnCross) =>
-    clickBtnCross.addEventListener('click', closeModal)
-  );
+  .getElementById('btn-modal-submit').addEventListener('click', closeModal);
 
 // Get values of checkboxes location, by name
 const theLocationsList = Array.from(
@@ -163,7 +165,7 @@ const errorDisplay = (tag, message, valid) => {
 };
 
 // First name : Filters the length and the validity of the first name typed
-function firstNameChecker(value) {
+const firstNameChecker = (value) => {
   // If length is not valid
   if ((value.length > 0 && value.length < 2) || value.length > 33) {
     errorDisplay(
@@ -270,7 +272,7 @@ const birthDateChecker = (value) => {
   // If numbers are not valid
   else if (
     !value.match(
-      /^((0[1-9]|1\d|2[0-8])[\/\-](0\d|1[012])[\/\-](1[6-9]|[2-9]\d)\d{2}|(29|30)[\/\-](0[13-9]|1[012])[\/\-](1[6-9]|[2-9]\d)\d{2}|31[\/\-](0[13578]|1[02])[\/\-](1[6-9]|[2-9]\d)\d{2}|29[\/\-]02[\/\-]((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(16|[2468][048]|[3579][26])00))$/
+      /^((0[1-9]|1\d2[0-8])[\/\-](0\d|1[012])[\/\-](1[6-9]|[2-9]\d)\d{2}|(29|30)[\/\-](0[13-9]|1[012])[\/\-](1[6-9]|[2-9]\d)\d{2}|31[\/\-](0[13578]|1[02])[\/\-](1[6-9]|[2-9]\d)\d{2}|29[\/\-]02[\/\-]((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(16|[2468][048]|[3579][26])00))$/
     ) &&
     !value.match(
       /(^(19[0-9]{2}|200[0-9])[\/\-](0[1-9]|1[012])[\/\-](0[1-9]|[12][0-9]|3[01])$)/
@@ -436,6 +438,8 @@ checkBoxTermsOfUseStatic.forEach((checkTerm) => {
 // Function used later to close the form subscribe modal on valid filled form
 const areAllBooleansValid = () => {
   return (
+    // Verifies if the value of firstName, lastName, email, birthDate and quantity are not null
+    // And verifies if all the functions on input fields and checkboxes return true.
     firstName !== null &&
     isFirstNameValid !== false &&
     lastName !== null &&
@@ -451,13 +455,13 @@ const areAllBooleansValid = () => {
   );
 };
 
-// Close the form subscribe modal through the cross
+// Close the form subscribe modal through the cross "X"
 function closeCrossModal() {
   modalContent.style.display = 'none';
   secondModal.style.display = 'none';
 }
 
-// Closes the modal thanks when you click on the cross
+// Closes the modal thanks when you click on the cross "X"
 document
   .getElementById('close-modal-thank-you')
   .addEventListener('click', closeModalThankYou);
