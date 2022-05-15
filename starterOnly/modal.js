@@ -1,3 +1,119 @@
+//////////////////////////////////////////////
+// GLOBAL VARIABLES TO CATCH DOM'S ELEMENTS //
+
+// Modal form content (entire form block)
+const modalContent = document.getElementById('modal-content');
+// Modal form button
+
+const modalBtn = document.querySelectorAll('.modal-btn');
+// Modal thanks button
+
+const btnReset = document.getElementById('btn-modal-thank-you');
+
+// Modal thanks content (entire thanks block)
+const secondModal = document.getElementById('modal-subscribe-thank-you');
+
+// Get values of checkboxes location, by name
+const theLocationsList = Array.from(
+  document.querySelectorAll('input[name="location"]'),
+  (value) => value
+);
+
+// Get values for length of checkboxes location ( using two consts), by iteration on ids
+const toBuildTheLocationVariable = [1, 2, 3, 4, 5, 6]
+  .map((value) => `input[id="location${value}"]`)
+  .join(', ');
+const theLocationVariable = document.querySelectorAll(
+  toBuildTheLocationVariable
+);
+
+// Stores an array exploited later on length === 0 or !== 0
+let arrayLocationVariable = [];
+
+// Gets value of the checkbox, terms of use, by id
+const checkBoxTermsOfUseStatic = document.querySelectorAll(
+  'input[id="checkbox1"]'
+);
+
+// Gets values of inputs ( text + text + email + date + number ) by types
+const inputsInFields = document.querySelectorAll(
+  'input[type="text"], input[type="email"], input[type="date"], input[type="number"]'
+);
+
+// Variables declared for all the functions filtered by regex
+let firstName, lastName, email, birthDate, quantity;
+
+// Variables to approve validities for the validation function areAllBooleansValid
+let isFirstNameValid = false;
+let isLastNameValid = false;
+let isEmailValid = false;
+let isBirthDateValid = false;
+let isQuantityValid = false;
+
+// Variable to approve validity of terms of use for the validation function areAllBooleansValid
+let isTermsOfUseValid = false;
+
+// Variable to approve validity of location checked for the validation function areAllBooleansValid
+let isOneLocationValid = false;
+
+// End of global variables //
+/////////////////////////////
+
+////////////////////////
+// FUNCTIONS DECLARED //
+
+// Handles the responsive in CSS
+function editNav() {
+  var x = document.getElementById('myTopnav');
+  if (x.className === 'topnav') {
+    x.className += ' responsive';
+  } else {
+    x.className = 'topnav';
+  }
+}
+
+// Opens modal form
+function launchModal() {
+  modalContent.style.display = 'block';
+}
+
+// Closes the form subscribe modal on valid filled form
+const areAllBooleansValid = () => {
+  return (
+    // Verifies if the value of firstName, lastName, email, birthDate and quantity are not null
+    // And verifies if all the functions on input fields and checkboxes return true.
+    firstName !== null &&
+    isFirstNameValid !== false &&
+    lastName !== null &&
+    isLastNameValid !== false &&
+    email !== null &&
+    isEmailValid !== false &&
+    birthDate !== null &&
+    isBirthDateValid !== false &&
+    quantity !== null &&
+    isQuantityValid !== false &&
+    isOneLocationValid !== false &&
+    isTermsOfUseValid !== false
+  );
+};
+
+// Close the form subscribe modal through the cross "X"
+function closeCrossModal() {
+  modalContent.style.display = 'none';
+  secondModal.style.display = 'none';
+}
+
+// Closes the modal thanks through the button "Fermer" and the cross "X"
+function closeModalThankYou() {
+  secondModal.style.display = 'none';
+}
+
+// End of functions declared //
+///////////////////////////////
+
+///////////////
+// LISTENERS //
+
 // Listener on the DOM, on form id="form-subscribe-tournament", prevent when action is submitting the form
 document
   .getElementById('form-subscribe-tournament')
@@ -10,61 +126,21 @@ document.getElementById('birthDate').addEventListener('submit', (event) => {
   event.preventDefault;
 });
 
-// Handles the responsive in CSS
-function editNav() {
-  var x = document.getElementById('myTopnav');
-  if (x.className === 'topnav') {
-    x.className += ' responsive';
-  } else {
-    x.className = 'topnav';
-  }
-}
-
-// Catchs DOM elements to variables
-const modalContent = document.getElementById('modal-content');
-const modalBtn = document.querySelectorAll('.modal-btn');
-const btnReset = document.getElementById('btn-modal-thank-you');
-const secondModal = document.getElementById('modal-subscribe-thank-you');
-
-// Open/Launch modal event
+// Listener to open/Launch modal event
 modalBtn.forEach((clickBtnLaunch) =>
   clickBtnLaunch.addEventListener('click', launchModal)
 );
 
-// Open modal form
-function launchModal() {
-  modalContent.style.display = 'block';
-}
-
-// Close modal events throught the button "C'est Parti"
+// Listener to close modal events throught the button "C'est Parti"
 document
-  .getElementById('btn-modal-submit').addEventListener('click', closeModal);
+  .getElementById('btn-modal-submit')
+  .addEventListener('click', closeModal);
 
-// Get values of checkboxes location, by name
-const theLocationsList = Array.from(
-  document.querySelectorAll('input[name="location"]'),
-  (value) => value
-);
+// End of listeners //
+//////////////////////
 
-// Get values for length of checkboxes location, by iteration on ids
-const toBuildTheLocationVariable = [1, 2, 3, 4, 5, 6]
-  .map((value) => `input[id="location${value}"]`)
-  .join(', ');
-
-const theLocationVariable = document.querySelectorAll(
-  toBuildTheLocationVariable
-);
-// Stores an array exploited later on length === 0 or !== 0
-let arrayLocationVariable = [];
-// Sets variable to approve validity of location checked
-let isOneLocationValid;
-// Gets value of the checkbox, terms of use, by id
-const checkBoxTermsOfUseStatic = document.querySelectorAll(
-  'input[id="checkbox1"]'
-);
-
-// Sets variable to approve validity of terms of use
-let isTermsOfUseValid;
+///////////////////////////////////////
+// OTHERS KIND OF FUNCTIONS DECLARED //
 
 // Close modal form by button
 function closeModal() {
@@ -136,20 +212,6 @@ function closeModal() {
   }
 }
 
-// Gets values of inputs ( text + text + email ) by type
-const inputsInFields = document.querySelectorAll(
-  'input[type="text"], input[type="email"], input[type="date"], input[type="number"]'
-);
-
-// Variables declared for all the functions filtered by regex
-let firstName, lastName, email, birthDate, quantity;
-// Variables for the "final" validation function.
-let isFirstNameValid = false;
-let isLastNameValid = false;
-let isEmailValid = false;
-let isBirthDateValid = false;
-let isQuantityValid = false;
-
 /* Manages all error messages displayed
    through a text displaying in the appropriated div */
 const errorDisplay = (tag, message, valid) => {
@@ -163,6 +225,12 @@ const errorDisplay = (tag, message, valid) => {
     errorDisplayDiv.textContent = message;
   }
 };
+
+// End of others kind of functions declared //
+//////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////
+// Functions for all the fields and checkboxes of the form //
 
 // First name : Filters the length and the validity of the first name typed
 const firstNameChecker = (value) => {
@@ -193,7 +261,7 @@ const firstNameChecker = (value) => {
     isFirstNameValid = true;
     areAllBooleansValid();
   }
-}
+};
 
 // Last name : Filters the length and the validity of the last name typed
 const lastNameChecker = (value) => {
@@ -310,6 +378,84 @@ const quantityChecker = (value) => {
   }
 };
 
+// Manages the tournament cities ( forward to functions: allErrorsChecked() in closeModal() )
+function isLocationValid() {
+  if (
+    theLocationsList.filter((location) => location.checked).length === 0 ||
+    theLocationVariable.length === 0
+  ) {
+    isOneLocationValid = false;
+    errorDisplay('locations', 'Une ville doit être cochée.', false);
+    areAllBooleansValid();
+  } else if (theLocationVariable.length !== 0) {
+    isOneLocationValid = true;
+    errorDisplay('locations', '', true);
+    areAllBooleansValid();
+  } else {
+    return error();
+  }
+}
+
+// Declares function ( forward to functions: allErrorsChecked() in closeModal() )
+function isCheckBoxTermsOfUseValid() {
+  // Get value of checkbox, term of use, by name
+  const checkBoxTermOfUseList = [
+    ...document.querySelectorAll('input[id="checkbox1"]'),
+  ];
+  const checkBoxTermsOfUseDynamic = document.querySelector(
+    'input[id="checkbox1"]:checked'
+  );
+  if (
+    checkBoxTermsOfUseDynamic === null &&
+    checkBoxTermOfUseList.filter((term) => term.checked).length === 0
+  ) {
+    isTermsOfUseValid = false;
+    errorDisplay('terms', "Acceptez les conditions d'utilisations.", false);
+    areAllBooleansValid();
+  } else if (
+    checkBoxTermsOfUseDynamic !== null &&
+    checkBoxTermOfUseList.filter((term) => term.checked).length !== 0
+  ) {
+    isTermsOfUseValid = true;
+    errorDisplay('terms', '', true);
+    areAllBooleansValid();
+  } else {
+    return error();
+  }
+}
+
+// End of functions for all the fields and checkboxes of the form //
+////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////
+// 3 LISTENERS FOR ALL THE FIELDS AND CHECKBOXES OF THE FORM //
+
+/* Manages the values obtained for each field text typed by the user,
+   getting the values of inputs ( text + text + email + birthdate + quantity) by switch on each id */
+inputsInFields.forEach((input) => {
+  input.addEventListener('input', (element) => {
+    switch (element.target.id) {
+      case 'firstName':
+        firstNameChecker(element.target.value);
+        break;
+      case 'lastName':
+        lastNameChecker(element.target.value);
+        break;
+      case 'email':
+        emailChecker(element.target.value);
+        break;
+      case 'birthDate':
+        birthDateChecker(element.target.value);
+        break;
+      case 'quantity':
+        quantityChecker(element.target.value);
+        break;
+      default:
+        return 'error';
+    }
+  });
+});
+
 /* Retrieve objects and returning true or false
    in the arrayLocationVariable
    to valide or invalide the closing of the modal */
@@ -346,78 +492,6 @@ theLocationVariable.forEach((check) => {
   });
 });
 
-// Manages the tournament cities ( forward to functions: allErrorsChecked() in closeModal() )
-function isLocationValid() {
-  if (
-    theLocationsList.filter((location) => location.checked).length === 0 ||
-    theLocationVariable.length === 0
-  ) {
-    isOneLocationValid = false;
-    errorDisplay('locations', 'Une ville doit être cochée.', false);
-    areAllBooleansValid();
-  } else if (theLocationVariable.length !== 0) {
-    isOneLocationValid = true;
-    errorDisplay('locations', '', true);
-    areAllBooleansValid();
-  } else {
-    return error();
-  }
-}
-
-/* Manages the values obtained for each field text typed by the user,
-   getting the values of inputs ( text + text + email + birthdate + quantity) by switch on each id */
-inputsInFields.forEach((input) => {
-  input.addEventListener('input', (element) => {
-    switch (element.target.id) {
-      case 'firstName':
-        firstNameChecker(element.target.value);
-        break;
-      case 'lastName':
-        lastNameChecker(element.target.value);
-        break;
-      case 'email':
-        emailChecker(element.target.value);
-        break;
-      case 'birthDate':
-        birthDateChecker(element.target.value);
-        break;
-      case 'quantity':
-        quantityChecker(element.target.value);
-        break;
-      default:
-        return 'error';
-    }
-  });
-});
-
-// Declares function ( forward to functions: allErrorsChecked() in closeModal() )
-function isCheckBoxTermsOfUseValid() {
-  // Below, get value of checkbox, term of use, by name
-  const checkBoxTermOfUseList = [
-    ...document.querySelectorAll('input[id="checkbox1"]'),
-  ];
-  const checkBoxTermsOfUseDynamic = document.querySelector(
-    'input[id="checkbox1"]:checked'
-  );
-  if (
-    checkBoxTermsOfUseDynamic === null &&
-    checkBoxTermOfUseList.filter((term) => term.checked).length === 0
-  ) {
-    isTermsOfUseValid = false;
-    errorDisplay('terms', "Acceptez les conditions d'utilisations.", false);
-    areAllBooleansValid();
-  } else if (
-    checkBoxTermsOfUseDynamic !== null &&
-    checkBoxTermOfUseList.filter((term) => term.checked).length !== 0
-  ) {
-    isTermsOfUseValid = true;
-    errorDisplay('terms', '', true);
-    areAllBooleansValid();
-  } else {
-    return error();
-  }
-}
-
 // Listener for checkbox GCU on method 'input'
 checkBoxTermsOfUseStatic.forEach((checkTerm) => {
   checkTerm.addEventListener('input', function () {
@@ -435,31 +509,11 @@ checkBoxTermsOfUseStatic.forEach((checkTerm) => {
   });
 });
 
-// Function used later to close the form subscribe modal on valid filled form
-const areAllBooleansValid = () => {
-  return (
-    // Verifies if the value of firstName, lastName, email, birthDate and quantity are not null
-    // And verifies if all the functions on input fields and checkboxes return true.
-    firstName !== null &&
-    isFirstNameValid !== false &&
-    lastName !== null &&
-    isLastNameValid !== false &&
-    email !== null &&
-    isEmailValid !== false &&
-    birthDate !== null &&
-    isBirthDateValid !== false &&
-    quantity !== null &&
-    isQuantityValid !== false &&
-    isOneLocationValid !== false &&
-    isTermsOfUseValid !== false
-  );
-};
+// End of the 3 listeners //
+////////////////////////////
 
-// Close the form subscribe modal through the cross "X"
-function closeCrossModal() {
-  modalContent.style.display = 'none';
-  secondModal.style.display = 'none';
-}
+/////////////////////////////////////////
+// LISTENERS TO CLOSE THE MODAL THANKS //
 
 // Closes the modal thanks when you click on the cross "X"
 document
@@ -469,6 +523,5 @@ document
 // Closes the modal thanks when you click on the button "Fermer"
 btnReset.addEventListener('click', closeModalThankYou);
 
-function closeModalThankYou() {
-  secondModal.style.display = 'none';
-}
+// End of listeners to close the modal thanks//
+///////////////////////////////////////////////
