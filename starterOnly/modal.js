@@ -3,11 +3,11 @@
 
 // Modal form content (entire form block)
 const modalContent = document.getElementById('modal-content');
+
 // Modal form button
-
 const modalBtn = document.querySelectorAll('.modal-btn');
-// Modal thanks button
 
+// Modal thanks button
 const btnReset = document.getElementById('btn-modal-thank-you');
 
 // Modal thanks content (entire thanks block)
@@ -111,36 +111,6 @@ function closeModalThankYou() {
 // End of functions declared //
 ///////////////////////////////
 
-///////////////
-// LISTENERS //
-
-/* Listener on the DOM, on form id="form-subscribe-tournament",
-   prevent when action is submitting the form */
-document
-  .getElementById('form-subscribe-tournament')
-  .addEventListener('submit', (event) => {
-    event.preventDefault();
-  });
-
-/* Listener on the DOM, on form id="form-subscribe-tournament",
-prevent when action is input the text */
-document.getElementById('birthDate').addEventListener('submit', (event) => {
-  event.preventDefault;
-});
-
-// Listener to open/Launch modal event
-modalBtn.forEach((clickBtnLaunch) =>
-  clickBtnLaunch.addEventListener('click', launchModal)
-);
-
-// Listener to close modal events throught the button "C'est Parti"
-document
-  .getElementById('btn-modal-submit')
-  .addEventListener('click', closeModal);
-
-// End of listeners //
-//////////////////////
-
 //////////////////////////////////////////////
 // FUNCTIONS CLOSE MODAL AND ERRORS DISPLAY //
 
@@ -229,7 +199,7 @@ const errorDisplay = (tag, message, valid) => {
 };
 
 // End of functions close modal and errors display //
-//////////////////////////////////////////////
+/////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////
 // Functions for all the fields and checkboxes of the form //
@@ -429,7 +399,33 @@ function isCheckBoxTermsOfUseValid() {
 // End of functions for all the fields and checkboxes of the form //
 ////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////
+///////////////
+// LISTENERS //
+
+/* Listener on the DOM, on form id="form-subscribe-tournament",
+   prevent when action is submitting the form */
+document
+  .getElementById('form-subscribe-tournament')
+  .addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
+
+/* Listener on the DOM, on form id="form-subscribe-tournament",
+ prevent when action is input the text */
+document.getElementById('birthDate').addEventListener('submit', (event) => {
+  event.preventDefault;
+});
+
+// Listener to open/Launch modal event
+modalBtn.forEach((clickBtnLaunch) =>
+  clickBtnLaunch.addEventListener('click', launchModal)
+);
+
+// Listener to close modal events throught the button "C'est Parti"
+document
+  .getElementById('btn-modal-submit')
+  .addEventListener('click', closeModal);
+
 // 3 LISTENERS FOR ALL THE FIELDS AND CHECKBOXES OF THE FORM //
 
 /* Manages the values obtained for each field text typed by the user,
@@ -512,10 +508,6 @@ checkBoxTermsOfUseStatic.forEach((checkTerm) => {
   });
 });
 
-// End of the 3 listeners //
-////////////////////////////
-
-/////////////////////////////////////////
 // LISTENERS TO CLOSE THE MODAL THANKS //
 
 // Closes the modal thanks when you click on the cross "X"
@@ -526,5 +518,5 @@ document
 // Closes the modal thanks when you click on the button "Fermer"
 btnReset.addEventListener('click', closeModalThankYou);
 
-// End of listeners to close the modal thanks//
-///////////////////////////////////////////////
+// End of the listeners //
+//////////////////////////
