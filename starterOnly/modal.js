@@ -114,14 +114,16 @@ function closeModalThankYou() {
 ///////////////
 // LISTENERS //
 
-// Listener on the DOM, on form id="form-subscribe-tournament", prevent when action is submitting the form
+/* Listener on the DOM, on form id="form-subscribe-tournament",
+   prevent when action is submitting the form */
 document
   .getElementById('form-subscribe-tournament')
   .addEventListener('submit', (event) => {
     event.preventDefault();
   });
 
-// Listener on the DOM, on form id="form-subscribe-tournament", prevent when action is input the text
+/* Listener on the DOM, on form id="form-subscribe-tournament",
+prevent when action is input the text */
 document.getElementById('birthDate').addEventListener('submit', (event) => {
   event.preventDefault;
 });
@@ -139,8 +141,8 @@ document
 // End of listeners //
 //////////////////////
 
-///////////////////////////////////////
-// OTHERS KIND OF FUNCTIONS DECLARED //
+//////////////////////////////////////////////
+// FUNCTIONS CLOSE MODAL AND ERRORS DISPLAY //
 
 // Close modal form by button
 function closeModal() {
@@ -226,7 +228,7 @@ const errorDisplay = (tag, message, valid) => {
   }
 };
 
-// End of others kind of functions declared //
+// End of functions close modal and errors display //
 //////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////
@@ -431,7 +433,8 @@ function isCheckBoxTermsOfUseValid() {
 // 3 LISTENERS FOR ALL THE FIELDS AND CHECKBOXES OF THE FORM //
 
 /* Manages the values obtained for each field text typed by the user,
-   getting the values of inputs ( text + text + email + birthdate + quantity) by switch on each id */
+   getting the values of inputs ( text + text + email + birthdate + quantity)
+   by switch on each id */
 inputsInFields.forEach((input) => {
   input.addEventListener('input', (element) => {
     switch (element.target.id) {
