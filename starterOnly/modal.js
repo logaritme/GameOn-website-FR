@@ -410,12 +410,6 @@ document
     event.preventDefault();
   });
 
-/* Listener on the DOM, on form id="form-subscribe-tournament",
- prevent when action is input the text */
-document.getElementById('birthDate').addEventListener('submit', (event) => {
-  event.preventDefault;
-});
-
 // Listener to open/Launch modal event
 modalBtn.forEach((clickBtnLaunch) =>
   clickBtnLaunch.addEventListener('click', launchModal)
