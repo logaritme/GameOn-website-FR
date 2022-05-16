@@ -14,5 +14,6 @@
 
 ### 5. All the issues solved were pushed on main/master of my fork since in reality my code will not be merged, but if that had been the case it would have been necessary to push all the issues on a branch.
 
-Here you can click on the link to launch the gh-page of the project: https://logaritme.github.io/GameOn-website-FR/
-Or you can open the index.html file with a browser, after you cloned the project.
+#### Here you can click on the link to launch the gh-page of the project: https://logaritme.github.io/GameOn-website-FR/
+
+#### Or you can open the index.html file with a browser, after you cloned the project.
