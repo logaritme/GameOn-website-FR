@@ -116,14 +116,15 @@ function closeModalThankYou() {
 
 // Close modal form by button
 function closeModal() {
-  const firstNameForLength = document.getElementById('firstName');
-  const lastNameForLength = document.getElementById('lastName');
-  const eMailForLength = document.getElementById('email');
-  const birthDateForLength = document.getElementById('birthDate');
-  const quantityTournamentForLength = document.getElementById('quantity');
+  
+  const firstNameInput = document.getElementById('firstName');
+  const lastNameInput = document.getElementById('lastName');
+  const eMailInput = document.getElementById('email');
+  const birthDateInput = document.getElementById('birthDate');
+  const quantityTournamentInput = document.getElementById('quantity');
 
   function displayErrorMsgFirstName() {
-    if (firstNameForLength.value.length === 0) {
+    if (firstNameInput.value.length === 0) {
       errorDisplay(
         'firstName',
         'Le prénom doit faire entre 2 et 33 caractères.',
@@ -133,7 +134,7 @@ function closeModal() {
   }
 
   function displayErrorMsgLastName() {
-    if (lastNameForLength.value.length === 0) {
+    if (lastNameInput.value.length === 0) {
       errorDisplay(
         'lastName',
         'Le nom doit faire entre 2 et 33 caractères.',
@@ -143,7 +144,7 @@ function closeModal() {
   }
 
   function displayErrorMsgEmail() {
-    if (eMailForLength.value.length === 0) {
+    if (eMailInput.value.length === 0) {
       errorDisplay(
         'email',
         "L'email doit faire entre 6 et 33 caractères.",
@@ -153,13 +154,13 @@ function closeModal() {
   }
 
   function displayErrorMsgBirthDate() {
-    if (birthDateForLength.value.length === 0) {
+    if (birthDateInput.value.length === 0) {
       errorDisplay('birthDate', "Cette date n'est pas valide.", false);
     }
   }
 
   function displayErrorMsgQuantity() {
-    if (quantityTournamentForLength.value.length === 0) {
+    if (quantityTournamentInput.value.length === 0) {
       errorDisplay('quantity', "Cette valeur n'est pas valide.", false);
     }
   }
@@ -282,7 +283,7 @@ const emailChecker = (value) => {
   // If caracters are not valid
   else if (
     value.length > 0 &&
-    !value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+    !value.match(/^[\w-\.\+]+@([\w-]+\.)+[\w-]{2,4}$/)
   ) {
     errorDisplay('email', 'Ce champ doit être valide au format email.', false);
     email = null;
@@ -298,21 +299,11 @@ const emailChecker = (value) => {
 
 // Date : Filters the length and the validity of the date selected/typed
 const birthDateChecker = (value) => {
-  // convertir la value dd/mm/yyyy en mm/dd/yyyy
   // Local variables: Today's date, and birthdate typed converted to a TimeStamp
   const todayDate = new Date();
   const todayDateTS = todayDate.getTime();
-
-  console.log(todayDate);
-  console.log(todayDateTS);
-
   const valueDateInput = new Date(value);
   const valueDateInputTS = valueDateInput.getTime();
-
-  console.log(value);
-  console.log(valueDateInput);
-  console.log(valueDateInputTS);
-
   // If length is not valid
   if (value.length > 0 && (value.length < 8 || value.length > 10)) {
     errorDisplay(
@@ -326,18 +317,10 @@ const birthDateChecker = (value) => {
   }
   // If numbers are not valid
   else if (
-    // !value.match(
-    //   /^((0[1-9]|1\d2[0-8])[\/\-](0\d|1[012])[\/\-](1[6-9]|[2-9]\d)\d{2}|(29|30)[\/\-](0[13-9]|1[012])[\/\-](1[6-9]|[2-9]\d)\d{2}|31[\/\-](0[13578]|1[02])[\/\-](1[6-9]|[2-9]\d)\d{2}|29[\/\-]02[\/\-]((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(16|[2468][048]|[3579][26])00))$/
-    // ) &&
-    // !value.match(
-    //   /(^(19[0-9]{2}|200[0-9])[\/\-](0[1-9]|1[012])[\/\-](0[1-9]|[12][0-9]|3[01])$)/
-    // ) &&
-    // The === Nan is not functionning
-    valueDateInputTS == NaN ||
-    // The number -> - 12 years
+    // The number -> - 12 years in TimeStamp
     valueDateInputTS >= todayDateTS - 378722000000 ||
-    // The number -> - 100 years
-    valueDateInputTS < todayDateTS - 3154000000000
+    // The number -> - 100 years in TimeStamp
+    valueDateInputTS < todayDateTS - 3155850000000
   ) {
     errorDisplay('birthDate', "Cette date n'est pas valide.", false);
     birthDate = null;
