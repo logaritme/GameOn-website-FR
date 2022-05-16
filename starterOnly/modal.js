@@ -298,8 +298,23 @@ const emailChecker = (value) => {
 
 // Date : Filters the length and the validity of the date selected/typed
 const birthDateChecker = (value) => {
+  // convertir la value dd/mm/yyyy en mm/dd/yyyy
+  // Local variables: Today's date, and birthdate typed converted to a TimeStamp
+  const todayDate = new Date();
+  const todayDateTS = todayDate.getTime();
+
+  console.log(todayDate);
+  console.log(todayDateTS);
+
+  const valueDateInput = new Date(value);
+  const valueDateInputTS = valueDateInput.getTime();
+
+  console.log(value);
+  console.log(valueDateInput);
+  console.log(valueDateInputTS);
+
   // If length is not valid
-  if (value.length > 0 && value.length !== 10) {
+  if (value.length > 0 && (value.length < 8 || value.length > 10)) {
     errorDisplay(
       'birthDate',
       'La date doit être conforme à jj/mm/aaaa.',
@@ -311,12 +326,18 @@ const birthDateChecker = (value) => {
   }
   // If numbers are not valid
   else if (
-    !value.match(
-      /^((0[1-9]|1\d2[0-8])[\/\-](0\d|1[012])[\/\-](1[6-9]|[2-9]\d)\d{2}|(29|30)[\/\-](0[13-9]|1[012])[\/\-](1[6-9]|[2-9]\d)\d{2}|31[\/\-](0[13578]|1[02])[\/\-](1[6-9]|[2-9]\d)\d{2}|29[\/\-]02[\/\-]((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(16|[2468][048]|[3579][26])00))$/
-    ) &&
-    !value.match(
-      /(^(19[0-9]{2}|200[0-9])[\/\-](0[1-9]|1[012])[\/\-](0[1-9]|[12][0-9]|3[01])$)/
-    )
+    // !value.match(
+    //   /^((0[1-9]|1\d2[0-8])[\/\-](0\d|1[012])[\/\-](1[6-9]|[2-9]\d)\d{2}|(29|30)[\/\-](0[13-9]|1[012])[\/\-](1[6-9]|[2-9]\d)\d{2}|31[\/\-](0[13578]|1[02])[\/\-](1[6-9]|[2-9]\d)\d{2}|29[\/\-]02[\/\-]((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(16|[2468][048]|[3579][26])00))$/
+    // ) &&
+    // !value.match(
+    //   /(^(19[0-9]{2}|200[0-9])[\/\-](0[1-9]|1[012])[\/\-](0[1-9]|[12][0-9]|3[01])$)/
+    // ) &&
+    // The === Nan is not functionning
+    valueDateInputTS == NaN ||
+    // The number -> - 12 years
+    valueDateInputTS >= todayDateTS - 378722000000 ||
+    // The number -> - 100 years
+    valueDateInputTS < todayDateTS - 3154000000000
   ) {
     errorDisplay('birthDate', "Cette date n'est pas valide.", false);
     birthDate = null;
