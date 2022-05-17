@@ -300,10 +300,7 @@ const emailChecker = (value) => {
 // Date : Filters the length and the validity of the date selected/typed
 const birthDateChecker = (value) => {
   // Local variables: Today's date, and birthdate typed converted to a TimeStamp
-  const todayDate = new Date();
-  const todayDateTS = todayDate.getTime();
-  const valueDateInput = new Date(value);
-  const valueDateInputTS = valueDateInput.getTime();
+
   // If length is not valid
   if (value.length > 0 && (value.length < 8 || value.length > 10)) {
     errorDisplay(
@@ -317,10 +314,9 @@ const birthDateChecker = (value) => {
   }
   // If numbers are not valid
   else if (
-    // The number -> - 12 years in TimeStamp
-    valueDateInputTS >= todayDateTS - 378722000000 ||
-    // The number -> - 100 years in TimeStamp
-    valueDateInputTS < todayDateTS - 3155850000000
+    !value.match(
+      /(^(19[0-9]{2}|200[0-9])[\/\-](0[1-9]|1[012])[\/\-](0[1-9]|[12][0-9]|3[01])$)/
+    )
   ) {
     errorDisplay('birthDate', "Cette date n'est pas valide.", false);
     birthDate = null;
